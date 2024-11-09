@@ -66,7 +66,7 @@ class EasyVFD{
     private:
     
     /** @brief These are inner methods that actualy set the VFDs. Different types of VFDs had a different pinouts. That could be solved by manualy rewiering them
-     *   but I decided to solve it by alowing user to pick whitch VFD he's using and than having two different methods for them (IV-6/IV-11 = Type1Setup; IV-22 = Type2Setup)
+     *   but I decided to solve it by alowing user to pick whitch VFD they're using and than having two different methods for them (IV-6/IV-11 = Type1Setup; IV-22 = Type2Setup)
      *   You can find which bits of shift registers are responsibe for which segments of a VFD in files IV11x6.png and IV22.png in img folder.  
     */
     void _Type1Setup(uint8_t firstShiftRegister, uint8_t secondShiftRegister, uint8_t number);
