@@ -7,21 +7,19 @@
  * (Disconnect VPOWER pin->Flash the code->unplug from the pc->connect external source->connect VPOWER pin)
  */ 
 
-/** @defgroup Colors Avalilable led colors
- *  @{
- */
-#define EASY_VFD_BLUE 1
-#define EASY_VFD_GREEN 2
-#define EASY_VFD_RED 3
-#define EASY_VFD_WHITE 4
-#define EASY_VFD_RuB 5
-#define EASY_VFD_RuG 6
-#define EASY_VFD_BuG 7
-/** @} */
-
 /** @brief The main EasyVFD class**/
 class EasyVFD{
     public:
+
+    enum VFDLedColors{
+      Blue = 1,
+      Green = 2,
+      Red = 3,
+      White = 4,
+      RuB = 5,
+      RuG = 6,
+      BuG = 7
+    };
 
     enum VFDType{
       IV22,
@@ -58,7 +56,7 @@ class EasyVFD{
     * @param comma Or the 'decimal point'. This argument controls the decimal point.
     * @param dimming Basically, just PWM on the @ref outputEnable pin. 0 means max brightness, 255 means min brightness.
     **/
-    void SetVFD(uint8_t number,uint8_t color,VFDType vfd,bool voltage=true,bool comma = false,uint16_t dimming=0);
+    void SetVFD(uint8_t number,VFDLedColors color,VFDType vfd,bool voltage=true,bool comma = false,uint16_t dimming=0);
   
     /** @brief This method 'displays' the digit that you have set using @ref SetVFD, be sure to call it after @ref SetVFD**/
     void Latch(void);
