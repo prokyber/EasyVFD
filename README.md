@@ -48,7 +48,7 @@ Constructor to initialize the EasyVFD object with the required pin connections.
 - uint8_t stcp - number of stcp pin
 - uint8_t dsin - number of data input pin
 
-## SetVFD()
+## SetVFD
 
 Sets the digit to display on the VFD, changes the LED color, and optionally controls the voltage, decimal point, and brightness.
 
