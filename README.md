@@ -66,7 +66,7 @@ Sets the digit to display on the VFD, changes the LED color, and optionally cont
 ("e" is an EasyVFDD instance)
 
 ```cpp
-e.SetVFDD(8, EasyVFD::Red, true, true);
+e.SetVFD(8, EasyVFD::Red, true, true);
 ```
 
 This will set number 8 to be displayed on the VFD, changes LED color to red, turns ON decimal point and enables high-voltage in shift register. Don't forget to call Latch method afterward to apply the changes on the module.
@@ -80,7 +80,7 @@ Displays the previously set digit on the VFD. This must be called after `SetVFD`
 ("e" is an EasyVFDD instance)
 
 ```cpp
-e.SetVFDD(/*your values*/);
+e.SetVFD(/*your values*/);
 e.Latch();
 ```
 
