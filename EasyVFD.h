@@ -11,6 +11,7 @@
 class EasyVFD{
     public:
 
+    /** @brief An enum representing supported built-in LED's colors**/
     enum VFDLedColors{
       Blue = 1,
       Green = 2,
@@ -21,6 +22,7 @@ class EasyVFD{
       BuG = 7
     };
 
+    /** @brief An enum representing supported types of VFDs**/
     enum VFDType{
       IV22,
       IV6,
@@ -44,12 +46,13 @@ class EasyVFD{
       **/
     EasyVFD(uint8_t outputEnable,uint8_t shcp, uint8_t stcp, uint8_t dsin);
 
-    /** @brief Set nixie digit/symbol on your EasyVFD. If you have multiple modules connected 'in series' (EasyVFD1 DSOUT->EasyVFD2 DSIN)
+    /** @brief Set nixie digit on your EasyVFD. If you have multiple modules connected 'in series' (EasyVFD1 DSOUT->EasyVFD2 DSIN)
     * the value is set to the first module in series(The one which has DSIN connected to the Arduino).
     * To display the value set with this method use the @ref Latch method!
-    * @param number The digit/symbol you want to display. The digits can be swapped if you are using non-standard VFDs(not In-12/In-17).
-    * @param color Led color, checkout the \ref Colors, I should have probably used enum to avoid illegal arguments, 
-    * but I am too lazy to rewrite and retest all the examples...
+    * @param number The digit you want to display.
+    * @param color This argument changes EasyVFDs built-in LED's color. Use @ref VFDLedColors enum values.
+    * @param vfd The type of VFD your using. Library is currently supporting IV-11, IV-6 and IV-22.
+    * Using differt VFD type may result in wrong pin-out.
     * @param voltage This argument enables the high-voltage convertor, be sure to disconnect the EasyVFD from PC,
     *  when you are calling the function with this argument set to true. You can flash the code with VPOWER pin disconneted,
     *  then disconnect the board from PC, connect to some external power source, then connect the VPOWER pin.

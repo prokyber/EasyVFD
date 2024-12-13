@@ -12,19 +12,22 @@ EasyVFD::EasyVFD(uint8_t outputEnable,uint8_t shcp, uint8_t stcp, uint8_t dsin):
     pinMode(dsin, OUTPUT);
 }
 
-void EasyVFD::SetVFD(uint8_t number,uint8_t color,EasyVFD::VFDType vfd,bool voltage,bool comma,uint16_t dimming){
+void EasyVFD::SetVFD(uint8_t number,VFDLedColors color,EasyVFD::VFDType vfd,bool voltage,bool comma,uint16_t dimming){
     #if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)//AnalogWrite is supported for some platfroms and not supported for others(Esp32?). if you want to use dimming on these platoforms you have to implement it yourself:)
     analogWrite(outputEnable,dimming);
     #endif
     uint8_t secondShiftRegisterData=0b00011100;
     uint8_t firstShiftRegisterData=0b00000000;
-    if(color==EASY_VFD_RED)secondShiftRegisterData&=0b11101111;
-    if(color==EASY_VFD_GREEN)secondShiftRegisterData&=0b11110111;
-	if(color==EASY_VFD_BLUE)secondShiftRegisterData&=0b11111011;
-    if(color==EASY_VFD_WHITE)secondShiftRegisterData&=0b11100011;
-    if(color==EASY_VFD_RuB)secondShiftRegisterData&=0b11101011;
-    if(color==EASY_VFD_RuG)secondShiftRegisterData&=0b11100111;
-    if(color==EASY_VFD_BuG)secondShiftRegisterData&=0b11110011;	
+    switch(color)
+    {
+        case EasyVFD::Red: secondShiftRegisterData&=0b11101111;break;
+        case EasyVFD::Green: secondShiftRegisterData&=0b11110111;break;
+        case EasyVFD::Blue: secondShiftRegisterData&=0b11111011;break;
+        case EasyVFD::White: secondShiftRegisterData&=0b11100011;break;
+        case EasyVFD::RuB: secondShiftRegisterData&=0b11101011;break;
+        case EasyVFD::RuG: secondShiftRegisterData&=0b11100111;break;
+        case EasyVFD::BuG: secondShiftRegisterData&=0b11110011;break;	
+    }
     if(voltage)secondShiftRegisterData|=0b00100000;
     if(!comma)firstShiftRegisterData|=0b10000000;
     firstShiftRegisterData &= 0b10000000;
